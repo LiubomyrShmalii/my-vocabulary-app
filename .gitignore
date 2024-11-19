@@ -1,0 +1,30 @@
+# Node.js dependencies
+node_modules/
+
+# Next.js build output
+.next/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Local environment variables
+.env
+.env.local
+.env.*.local
+
+# Temporary files
+*.swp
+*.swo
+*.tmp
+
+# Tailwind CSS output
+public/tailwind.css
+
+# OS-specific files
+*.DS_Store
