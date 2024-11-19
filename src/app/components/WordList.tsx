@@ -15,24 +15,19 @@ export default function WordList({ words, onGoHome }: WordListProps) {
   };
 
   return (
-    <div className="flex flex-col items-center w-full max-w-[460px] mx-auto mt-8">
-      {/* Кнопки зверху */}
-      <div className="flex flex-col items-center mb-6">
-        <button
-          onClick={onGoHome}
-          className="mb-4 px-4 py-2 bg-blue-500 text-white rounded w-full"
-        >
-          Повернутися на головну
-        </button>
-        <button
-          onClick={resetProgress}
-          className="px-4 py-2 bg-red-500 text-white rounded w-full"
-        >
-          Скинути весь прогрес
-        </button>
-      </div>
-
-      {/* Список слів */}
+    <div className="top2">
+      <button
+        onClick={onGoHome}
+        className="mb-4 px-4 py-2 bg-blue-500 text-white rounded w-full"
+      >
+        Повернутися на головну
+      </button>
+      <button
+        onClick={resetProgress}
+        className="px-4 py-2 bg-red-500 text-white rounded w-full"
+      >
+        Скинути весь прогрес
+      </button>
       <h1 className="text-2xl font-bold mb-4 text-center">Слова, які я знаю</h1>
       <div className="grid grid-cols-1 gap-4 w-full">
         {knownWords.map((word) => (
