@@ -8,7 +8,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <title>Vocabulary Trainer</title>
+        <title>Тренуй слова з Ігором</title>
       </head>
       <body>{children}</body>
     </html>
