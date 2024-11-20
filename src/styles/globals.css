@@ -9,7 +9,7 @@ body {
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+
 }
 
 #__next {
@@ -28,8 +28,8 @@ body {
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-width: 360px; /* Максимальна ширина 360px */
-  padding: 16px; /* Відступи для зручності читання */
+  max-width: 420px;
+  padding: 16px;
   box-sizing: border-box;
   height: 100%;
 }

@@ -17,6 +17,7 @@ export default function WordTest({
   const [shuffledWords, setShuffledWords] = useState<Word[]>([]);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isLocked, setIsLocked] = useState<boolean>(false);
+  const [shuffledOptions, setShuffledOptions] = useState<string[]>([]);
   const [selectedAnswer, setSelectedAnswer] = useState<{
     index: number | null;
     isCorrect: boolean | null;
@@ -39,6 +40,15 @@ export default function WordTest({
       setCurrentIndex(0);
     }
   }, [words, status, shuffledWords.length]);
+
+  useEffect(() => {
+    if (shuffledWords.length > 0) {
+      const currentWord = shuffledWords[currentIndex];
+      const optionsWithCorrect = [...currentWord.options];
+      const shuffled = optionsWithCorrect.sort(() => Math.random() - 0.5);
+      setShuffledOptions(shuffled);
+    }
+  }, [shuffledWords, currentIndex]);
 
   if (shuffledWords.length === 0) {
     return (
@@ -64,7 +74,7 @@ export default function WordTest({
     onUpdateWordStatus(currentWord.id, isCorrect ? 2 : 3);
 
     if (!isCorrect) {
-      const correctIndex = currentWord.options.findIndex(
+      const correctIndex = shuffledOptions.findIndex(
         (option) => option === currentWord.ua
       );
       setTimeout(() => {
@@ -90,7 +100,7 @@ export default function WordTest({
         Що означає: <span className="text-blue-600">{currentWord.de}</span>?
       </h2>
       <div className="grid grid-cols-1 gap-4 w-full">
-        {currentWord.options.map((option, index) => {
+        {shuffledOptions.map((option, index) => {
           let buttonColor = "bg-gray-100 text-gray-800";
           if (selectedAnswer.index === index) {
             buttonColor = selectedAnswer.isCorrect
@@ -103,7 +113,7 @@ export default function WordTest({
           return (
             <button
               key={index}
-              className={`px-4 py-2 border rounded ${buttonColor} text-center break-words`}
+              className={`px-4 py-2 border rounded min-w-[370px] ${buttonColor} text-center break-words`}
               onClick={() => handleAnswer(option === currentWord.ua, index)}
               disabled={isLocked}
             >
@@ -114,7 +124,7 @@ export default function WordTest({
       </div>
       <button
         onClick={onGoHome}
-        className="mt-4 px-4 py-2 bg-purple-600 text-white rounded w-full"
+        className="mt-4 px-4 py-2 bg-purple-600 text-white rounded w-full min-w-[370px]"
       >
         Повернутись на головну
       </button>
